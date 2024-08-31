@@ -7,6 +7,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import './styles/style.css';
 import './styles/about.css';
 import Profile from "./components/profile";
+import Photo from "./components/photo";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/photo",
-                element: <h1>Photo</h1>
+                element: <Photo/>
             }
         ]
     }
