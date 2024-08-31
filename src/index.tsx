@@ -6,6 +6,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
 import './styles/style.css';
 import './styles/about.css';
+import Profile from "./components/profile";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <h1>Profile</h1>
+                element: <Profile/>
             },
             {
                 path: "/photo",
