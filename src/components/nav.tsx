@@ -5,6 +5,7 @@ const Nav = () => {
         <nav>
             <ul>
                 <NavItem value={"Profile"} isLast={false} linkTo={"/"}></NavItem>
+                <NavItem value={"Notes"} isLast={false} linkTo={"/notes"}></NavItem>
                 <NavItem value={"Photo"} isLast={false} linkTo={"/photo"}></NavItem>
                 <NavItem value={"Wordle+"} isLast={true} linkTo={"https://wordle-plus.netlify.app/"}></NavItem>
             </ul>

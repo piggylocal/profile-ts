@@ -8,6 +8,8 @@ import './styles/style.css';
 import './styles/about.css';
 import Profile from "./components/profile";
 import Photo from "./components/photo";
+import NoteDisplay from "./components/noteDisplay";
+import Notes from "./components/notes";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -20,6 +22,14 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Profile/>
+            },
+            {
+                path: "/notes",
+                element: <Notes/>
+            },
+            {
+                path: "/notes/:noteIdStr",
+                element: <NoteDisplay/>
             },
             {
                 path: "/photo",
