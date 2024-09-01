@@ -9,7 +9,7 @@ type Note = {
 
 export type {Note};
 export const notes: Note[] = [
-    {
+    /* {
         id: 1,
         author: "acst",
         title: "Test Note",
@@ -24,5 +24,13 @@ export const notes: Note[] = [
         path: "testNote2.md",
         categories: ["test"],
         keywords: ["test"]
+    }, */
+    {
+        id: 3,
+        author: "acst",
+        title: "Access Your Device Anywhere with SSH Reverse Tunneling",
+        path: "SSH-reverse-tunneling.md",
+        categories: ["CS", "Networking"],
+        keywords: ["Reverse Tunneling", "SSH", "Networking", "AWS"]
     }
 ];

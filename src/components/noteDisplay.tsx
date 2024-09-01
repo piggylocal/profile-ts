@@ -3,6 +3,7 @@ import markdownit from 'markdown-it';
 import React from "react";
 import {useParams} from "react-router-dom";
 import {notes} from "../dto/note";
+import hljs from "highlight.js";
 
 const NoteDisplay = () => {
     const {noteIdStr} = useParams();
@@ -12,6 +13,7 @@ const NoteDisplay = () => {
     const note = i < notes.length ? notes[i] : null;
 
     const [content, setContent] = React.useState<string>("");
+
 
     React.useEffect(() => {
         async function fetchContent() {
@@ -25,7 +27,8 @@ const NoteDisplay = () => {
                     console.log("Failed to fetch note content");
                 }
                 const text = await response.text();
-                setContent(markdownit().render(text));
+                const renderedText  = markdownit().render(text);
+                setContent(renderedText);
             } catch (error) {
                 console.error(error);
             }
@@ -33,6 +36,13 @@ const NoteDisplay = () => {
 
         void fetchContent();
     }, [note]);
+
+    React.useEffect(() => {
+        const codeBlocks = document.querySelectorAll("pre code");
+        codeBlocks.forEach((block) => {
+            hljs.highlightElement(block as HTMLElement);
+        });
+    });
 
     return (
         <main className="center" dangerouslySetInnerHTML={{__html: purify.sanitize(content)}}>
