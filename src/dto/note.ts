@@ -16,15 +16,15 @@ export const notes: Note[] = [
         path: "testNote.md",
         categories: ["test"],
         keywords: ["test"]
-    },
+    }, */
     {
         id: 2,
         author: "acst",
-        title: "Test Note 2",
+        title: "蛇和包子过新年",
         path: "testNote2.md",
         categories: ["test"],
         keywords: ["test"]
-    }, */
+    },
     {
         id: 3,
         author: "acst",
