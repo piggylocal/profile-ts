@@ -1,11 +1,10 @@
 import React from "react";
 
-import {Note} from "../dto/note";
+import {NoteInfo} from "../dto/note";
 import NoteItem from "./noteItem";
 
 const Notes = () => {
-    const [notes, setNotes] = React.useState<Note[]>([]);
-    const reversedNotes = [...notes].reverse();
+    const [notes, setNotes] = React.useState<NoteInfo[]>([]);
 
     React.useEffect(() => {
        async function fetchNotes() {
@@ -14,7 +13,7 @@ const Notes = () => {
                if (!response.ok) {
                    console.log("Failed to fetch notes");
                }
-               const notes = await response.json() as Note[];
+               const notes = await response.json() as NoteInfo[];
                setNotes(notes);
            } catch (error) {
                console.error(error);
@@ -27,7 +26,7 @@ const Notes = () => {
     return (
         <main className="center">
             <h1>Notes</h1>
-            {reversedNotes.map((note) => (
+            {notes.map((note) => (
                 <NoteItem note={note} key={note.id}></NoteItem>
             ))}
         </main>

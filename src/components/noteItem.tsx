@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
-import {Note} from "../dto/note";
+import {NoteInfo} from "../dto/note";
 
-const NoteItem = ( {note}: {note: Note} ) => {
+const NoteItem = ( {note}: {note: NoteInfo} ) => {
     return (
         <p><Link to={`/notes/${note.id}`}>{note.title}</Link></p>
     )
