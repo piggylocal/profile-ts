@@ -22,7 +22,7 @@ const Notes = () => {
        }
 
        void fetchNotes();
-    });
+    }, []);
 
     return (
         <main className="center">
