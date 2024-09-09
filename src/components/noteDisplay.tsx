@@ -14,7 +14,8 @@ const NoteDisplay = () => {
             try {
                 const response = await fetch(`${process.env.REACT_APP_API}/note/${noteId}`);
                 if (!response.ok) {
-                    console.log("Failed to fetch note content");
+                    console.error("Failed to fetch note content");
+                    return;
                 }
                 const note = await response.json() as Note;
                 const renderedText = markdownit().render(note.content);
