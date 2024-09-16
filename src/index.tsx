@@ -6,6 +6,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
 import './styles/style.css';
 import './styles/about.css';
+import './styles/hoverImgBox.css';
 import Profile from "./components/profile";
 import Photo from "./components/photo";
 import NoteDisplay from "./components/noteDisplay";

@@ -1,0 +1,22 @@
+div.hover-img-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  img.surface {
+    position: absolute;
+    opacity: 1;
+    z-index: 1;
+    transition: opacity 0.5s;
+
+    &:hover {
+      opacity: 0;
+    }
+  }
+
+  img.bottom {
+    transform: scaleY(0.85);
+  }
+}

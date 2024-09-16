@@ -1,0 +1,21 @@
+div.hover-img-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+div.hover-img-box img.surface {
+  position: absolute;
+  opacity: 1;
+  z-index: 1;
+  transition: opacity 0.5s;
+}
+div.hover-img-box img.surface:hover {
+  opacity: 0;
+}
+div.hover-img-box img.bottom {
+  transform: scaleY(0.85);
+}
+
+/*# sourceMappingURL=hoverImgBox.css.map */
