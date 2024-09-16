@@ -3,7 +3,7 @@ import {NoteInfo} from "../dto/note";
 
 const NoteItem = ( {note}: {note: NoteInfo} ) => {
     return (
-        <p><Link to={`/notes/${note.id}`}>{note.title}</Link></p>
+        <p><Link to={`/${note.id}`}>{note.title}</Link></p>
     )
 }
 

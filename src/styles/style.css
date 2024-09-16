@@ -161,6 +161,24 @@ main.center {
   transform: translateX(50%);
 }
 
+div.center {
+  position: fixed;
+  width: 50vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+div.center form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+div.center form > :not(style) {
+  margin: 8px;
+  width: 25ch;
+}
+
 @media screen and (min-width: 401px) {
   header nav ul li ul.dropdown {
     position: absolute;
@@ -176,10 +194,13 @@ main.center {
     width: 100vw;
     transform: none;
   }
+  div.center {
+    width: 100vw;
+  }
 }
 @media screen and (max-width: 400px) {
   header {
-    height: 30%;
+    min-height: 30%;
   }
   header nav ul {
     flex-direction: column;

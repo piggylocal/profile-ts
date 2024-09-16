@@ -10,6 +10,7 @@ import Profile from "./components/profile";
 import Photo from "./components/photo";
 import NoteDisplay from "./components/noteDisplay";
 import Notes from "./components/notes";
+import Login from "./components/login";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -21,19 +22,23 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <Profile/>
-            },
-            {
-                path: "/notes",
                 element: <Notes/>
             },
             {
-                path: "/notes/:noteId",
+                path: "/:noteId",
                 element: <NoteDisplay/>
+            },
+            {
+                path: "/profile",
+                element: <Profile/>
             },
             {
                 path: "/photo",
                 element: <Photo/>
+            },
+            {
+                path: "/login",
+                element: <Login/>
             }
         ]
     }
