@@ -12,6 +12,18 @@ import Photo from "./components/photo";
 import NoteDisplay from "./components/noteDisplay";
 import Notes from "./components/notes";
 import Login from "./components/login";
+import axios from "axios";
+import Admin from "./components/admin";
+
+axios.interceptors.request.use(function (config) {
+    if (config.url?.startsWith(process.env.REACT_APP_API as string)) {
+        const token = localStorage.getItem("token");
+        if (token) {
+            config.headers.Authorization = token;
+        }
+    }
+    return config;
+});
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -40,6 +52,10 @@ const router = createBrowserRouter([
             {
                 path: "/login",
                 element: <Login/>
+            },
+            {
+                path: "/admin",
+                element: <Admin/>
             }
         ]
     }

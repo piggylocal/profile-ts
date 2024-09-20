@@ -3,7 +3,7 @@ import {Outlet, useLocation} from "react-router-dom";
 
 import './App.css';
 import Nav from "./components/nav";
-import {getIP} from "./services/ip";
+import {getIP} from "./managers/ip";
 import {VisitorLog} from "./dto/user";
 
 function App() {

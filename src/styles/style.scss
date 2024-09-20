@@ -201,7 +201,6 @@ main {
 
 div.center {
   position: fixed;
-  width: 50vw;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -213,9 +212,17 @@ div.center {
     justify-content: center;
 
     & > :not(style) {
-      margin: 8px;
-      width: 25ch
+      margin: 8px 0;
+      width: 30ch;
     }
+
+    .hidden {
+      display: none;
+    }
+  }
+
+  button {
+    min-width: 15ch;
   }
 }
 
