@@ -166,6 +166,7 @@ div.center {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont;
 }
 div.center form {
   display: flex;
@@ -182,6 +183,10 @@ div.center form .hidden {
 }
 div.center button {
   min-width: 15ch;
+}
+div.center h1, div.center h2, div.center h3, div.center h4, div.center h5, div.center h6 {
+  font-weight: 300;
+  padding: 6px 8px;
 }
 
 @media screen and (min-width: 401px) {

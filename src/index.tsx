@@ -17,9 +17,12 @@ import Admin from "./components/admin";
 
 axios.interceptors.request.use(function (config) {
     if (config.url?.startsWith(process.env.REACT_APP_API as string)) {
-        const token = localStorage.getItem("token");
-        if (token) {
-            config.headers.Authorization = token;
+        const tokenJSON = localStorage.getItem("token");
+        if (tokenJSON) {
+            const token = JSON.parse(tokenJSON);
+            if (token) {
+                config.headers.Authorization = token;
+            }
         }
     }
     return config;

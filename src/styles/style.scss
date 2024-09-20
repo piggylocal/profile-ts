@@ -205,6 +205,8 @@ div.center {
   left: 50%;
   transform: translate(-50%, -50%);
 
+  font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont;
+
   form {
     display: flex;
     flex-direction: column;
@@ -223,6 +225,11 @@ div.center {
 
   button {
     min-width: 15ch;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+    padding: 6px 8px;
   }
 }
 
