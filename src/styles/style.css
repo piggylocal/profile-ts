@@ -199,9 +199,6 @@ div.center button {
     width: 100vw;
     transform: none;
   }
-  div.center {
-    width: 100vw;
-  }
 }
 @media screen and (max-width: 400px) {
   header {
