@@ -89,7 +89,8 @@ const Login = () => {
                     <TextField
                         id="login-username"
                         label="Username"
-                        autoComplete="off"
+                        type="email"
+                        autoComplete="username"
                         slotProps={{
                             htmlInput: {
                                 enterKeyHint: "next",
