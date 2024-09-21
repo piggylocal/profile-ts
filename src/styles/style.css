@@ -157,8 +157,8 @@ main pre {
   margin: 0.3rem 0.5rem;
 }
 main.center {
-  width: 50vw;
-  transform: translateX(50%);
+  width: 70vw;
+  transform: translateX(15vw);
 }
 
 div.center {
@@ -196,7 +196,7 @@ div.center h1, div.center h2, div.center h3, div.center h4, div.center h5, div.c
     z-index: 15;
   }
 }
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 750px) {
   aside {
     display: none;
   }
