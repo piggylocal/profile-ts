@@ -1,3 +1,4 @@
+import React from "react";
 import {useLocalStorage, useWindowSize} from "@uidotdev/usehooks";
 
 import "../styles/nav.css";
@@ -6,7 +7,7 @@ import {Link} from "react-router-dom";
 
 const Nav = () => {
     const {width} = useWindowSize();
-    const isFullNav = width !== null && width > 400;
+    const isFullNav = width === null || width >= (5 * (120 + 1) - 1)
 
     const [token,] = useLocalStorage<string | undefined>("token", undefined);
     const hasLoggedIn = Boolean(token);
