@@ -89,7 +89,8 @@ const Login = () => {
                         label="Username"
                         autoComplete="off"
                         slotProps={{
-                            input: {
+                            htmlInput: {
+                                enterKeyHint: "next",
                                 spellCheck: "false"
                             }
                         }}
@@ -100,7 +101,17 @@ const Login = () => {
                         label="Password"
                         type="password"
                         autoComplete="current-password"
+                        slotProps={{
+                            htmlInput: {
+                                enterKeyHint: "go",
+                            }
+                        }}
                         onChange={(event) => setPassword(event.target.value)}
+                        onKeyUp={(event) => {
+                            if (event.key === "Enter") {
+                                void getToken(username, password);
+                            }
+                        }}
                     />
                     <HoverImgBox
                         surfaceImgSrc={`${process.env.PUBLIC_URL}/pignose.png`}
