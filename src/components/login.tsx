@@ -93,8 +93,7 @@ const Login = () => {
                         autoComplete="username"
                         slotProps={{
                             htmlInput: {
-                                enterKeyHint: "next",
-                                spellCheck: "false"
+                                enterKeyHint: "go"
                             }
                         }}
                         onChange={(event) => setUsername(event.target.value)}
