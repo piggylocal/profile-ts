@@ -34,6 +34,8 @@ const Login = () => {
     const [loginError, setLoginError] = React.useState<LoginError>(LoginError.NONE);
     const [, setToken] = useLocalStorage<string | undefined>("token", undefined);
 
+    const passwordRef = React.useRef<HTMLInputElement>(null);
+
     const navigate = useNavigate();
 
     async function getToken(username: string, password: string) {
@@ -95,9 +97,15 @@ const Login = () => {
                             }
                         }}
                         onChange={(event) => setUsername(event.target.value)}
+                        onKeyUp={(event) => {
+                            if (event.key === "Enter") {
+                                void getToken(username, password);
+                            }
+                        }}
                     />
                     <TextField
                         id="login-password"
+                        ref={passwordRef}
                         label="Password"
                         type="password"
                         autoComplete="current-password"
