@@ -1,6 +1,7 @@
 import {useLocalStorage} from "@uidotdev/usehooks";
 
 import NavItem from "./navItem";
+import "../styles/nav.css";
 
 const Nav = () => {
     const [token,] = useLocalStorage<string | undefined>("token", undefined);
