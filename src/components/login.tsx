@@ -98,14 +98,14 @@ const Login = () => {
                         }}
                         onChange={(event) => setUsername(event.target.value)}
                         onKeyUp={(event) => {
-                            if (event.key === "Enter") {
-                                void getToken(username, password);
+                            if (event.key === "Enter" && passwordRef.current) {
+                                passwordRef.current.focus();
                             }
                         }}
                     />
                     <TextField
                         id="login-password"
-                        ref={passwordRef}
+                        inputRef={passwordRef}
                         label="Password"
                         type="password"
                         autoComplete="current-password"
