@@ -93,12 +93,19 @@ const Login = () => {
                         autoComplete="username"
                         slotProps={{
                             htmlInput: {
-                                enterKeyHint: "go"
+                                enterKeyHint: password ? "go" : "next"
                             }
                         }}
                         onChange={(event) => setUsername(event.target.value)}
                         onKeyUp={(event) => {
-                            if (event.key === "Enter" && passwordRef.current) {
+                            if (event.key !== "Enter") {
+                                return;
+                            }
+                            if (password) {
+                                void getToken(username, password);
+                                return;
+                            }
+                            if (passwordRef.current) {
                                 passwordRef.current.focus();
                             }
                         }}
