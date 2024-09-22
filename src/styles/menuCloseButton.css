@@ -4,47 +4,47 @@ div.menu-close {
   position: absolute;
   left: 0;
   top: 0;
-  width: 200px;
-  height: 143.2px;
+  width: 28.6px;
+  height: 20.4776px;
 }
 div.menu-close div.bar {
   position: absolute;
-  top: 57.6px;
+  top: 8.2368px;
   left: 0;
-  background-color: black;
+  background-color: #666;
 }
 div.menu-close div.bar, div.menu-close div.bar::before, div.menu-close div.bar::after {
-  width: 200px;
-  height: 28px;
-  border-radius: 3.2px;
+  width: 28.6px;
+  height: 2.002px;
+  border-radius: 1.001px;
   transition: all 0.5s cubic-bezier(0.5, -0.6, 0.19, 1);
 }
 div.menu-close div.bar::before {
   position: absolute;
-  top: -57.6px;
+  top: -8.2368px;
   left: 0;
   content: "";
-  background-color: black;
+  background-color: #666;
 }
 div.menu-close div.bar::after {
   position: absolute;
-  top: 57.6px;
+  top: 8.2368px;
   left: 0;
   content: "";
-  background-color: black;
+  background-color: #666;
 }
 div.menu-close.close div.bar {
-  left: -96px;
+  left: -13.728px;
   background: none;
 }
 div.menu-close.close div.bar::before {
-  top: 9.6px;
-  left: 96px;
+  top: 1.3728px;
+  left: 13.728px;
   transform: rotate(-45deg);
 }
 div.menu-close.close div.bar::after {
-  top: 9.6px;
-  left: 96px;
+  top: 1.3728px;
+  left: 13.728px;
   transform: rotate(45deg);
 }
 

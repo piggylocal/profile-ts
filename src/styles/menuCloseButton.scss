@@ -1,4 +1,5 @@
-$width: 200px;
+$width: 28.6px;
+$background: #666;
 
 div.menu-close {
   display: block;
@@ -13,12 +14,12 @@ div.menu-close {
     position: absolute;
     top: calc($width * 0.288);
     left: 0;
-    background-color: black;
+    background-color: $background;
 
     &, &::before, &::after {
       width: $width;
-      height: calc($width * 0.14);
-      border-radius: calc($width * 0.016);
+      height: calc($width * 0.07);
+      border-radius: calc($width * 0.035);
       transition: all .5s cubic-bezier(0.5,-0.6,0.19,1);
     }
 
@@ -27,7 +28,7 @@ div.menu-close {
       top: calc($width * -0.288);
       left: 0;
       content: '';
-      background-color: black;
+      background-color: $background;
     }
 
     &::after {
@@ -35,7 +36,7 @@ div.menu-close {
       top: calc($width * 0.288);
       left: 0;
       content: '';
-      background-color: black;
+      background-color: $background;
     }
   }
 

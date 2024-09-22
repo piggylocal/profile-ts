@@ -4,6 +4,7 @@ import {useLocalStorage, useWindowSize} from "@uidotdev/usehooks";
 import "../styles/nav.css";
 import {Divider, Stack} from "@mui/material";
 import {Link} from "react-router-dom";
+import MenuCloseButton from "./menuCloseButton";
 
 const Nav = () => {
     const {width} = useWindowSize();
@@ -12,13 +13,37 @@ const Nav = () => {
     const [token,] = useLocalStorage<string | undefined>("token", undefined);
     const hasLoggedIn = Boolean(token);
 
+    if (!isFullNav) {
+        return (
+            <Stack
+                component="nav"
+                direction="row"
+                sx={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "42.5px"
+                }}
+            >
+                <MenuCloseButton/>
+                <img
+                    src={process.env.PUBLIC_URL + "/mono-pine.svg"}
+                    alt=""
+                    className="logo"
+                    style={{
+                        height: "30.5px",
+                    }}
+                />
+            </Stack>
+        )
+    }
+
     return (
         <Stack
             component="nav"
             divider={isFullNav && <Divider orientation="vertical" variant="middle" flexItem/>}
-            direction={isFullNav ? "row" : "column"}
+            direction="row"
             sx={{
-                justifyContent: isFullNav ? "flex-start" : "center",
+                justifyContent: "flex-start",
                 alignItems: "center",
             }}
         >
