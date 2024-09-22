@@ -1,0 +1,58 @@
+$width: 200px;
+
+div.menu-close {
+  display: block;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: $width;
+  height: calc($width * 0.716);
+
+  div.bar {
+    position: absolute;
+    top: calc($width * 0.288);
+    left: 0;
+    background-color: black;
+
+    &, &::before, &::after {
+      width: $width;
+      height: calc($width * 0.14);
+      border-radius: calc($width * 0.016);
+      transition: all .5s cubic-bezier(0.5,-0.6,0.19,1);
+    }
+
+    &::before {
+      position: absolute;
+      top: calc($width * -0.288);
+      left: 0;
+      content: '';
+      background-color: black;
+    }
+
+    &::after {
+      position: absolute;
+      top: calc($width * 0.288);
+      left: 0;
+      content: '';
+      background-color: black;
+    }
+  }
+
+  &.close div.bar {
+    left: calc($width * -0.48);
+    background: none;
+
+    &::before {
+      top: calc($width * 0.048);
+      left: calc($width * 0.48);
+      transform:rotate(-45deg);
+    }
+
+    &::after {
+      top: calc($width * 0.048);
+      left: calc($width * 0.48);
+      transform:rotate(45deg);
+    }
+  }
+}

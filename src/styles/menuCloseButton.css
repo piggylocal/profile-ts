@@ -1,0 +1,51 @@
+div.menu-close {
+  display: block;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 143.2px;
+}
+div.menu-close div.bar {
+  position: absolute;
+  top: 57.6px;
+  left: 0;
+  background-color: black;
+}
+div.menu-close div.bar, div.menu-close div.bar::before, div.menu-close div.bar::after {
+  width: 200px;
+  height: 28px;
+  border-radius: 3.2px;
+  transition: all 0.5s cubic-bezier(0.5, -0.6, 0.19, 1);
+}
+div.menu-close div.bar::before {
+  position: absolute;
+  top: -57.6px;
+  left: 0;
+  content: "";
+  background-color: black;
+}
+div.menu-close div.bar::after {
+  position: absolute;
+  top: 57.6px;
+  left: 0;
+  content: "";
+  background-color: black;
+}
+div.menu-close.close div.bar {
+  left: -96px;
+  background: none;
+}
+div.menu-close.close div.bar::before {
+  top: 9.6px;
+  left: 96px;
+  transform: rotate(-45deg);
+}
+div.menu-close.close div.bar::after {
+  top: 9.6px;
+  left: 96px;
+  transform: rotate(45deg);
+}
+
+/*# sourceMappingURL=menuCloseButton.css.map */
