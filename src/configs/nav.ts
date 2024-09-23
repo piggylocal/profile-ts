@@ -1,7 +1,7 @@
 type NavItemConfig = {
     value: string,
     to: string,
-    requiresAdmin: boolean,
+    requiresAdmin?: boolean,
 }
 type NavConfig = {
     items: NavItemConfig[],
@@ -9,10 +9,10 @@ type NavConfig = {
 
 const navConfig: NavConfig = {
     items: [
-        {value: "Notes", to: "/", requiresAdmin: false},
-        {value: "Profile", to: "/profile", requiresAdmin: false},
-        {value: "Photo", to: "/photo", requiresAdmin: false},
-        {value: "Wordle+", to: "https://wordle-plus.netlify.app/", requiresAdmin: false},
+        {value: "Notes", to: "/"},
+        {value: "Profile", to: "/profile"},
+        {value: "Photo", to: "/photo"},
+        {value: "Wordle+", to: "https://wordle-plus.netlify.app/"},
         {value: "Login", to: "/login", requiresAdmin: false},
         {value: "Admin", to: "/admin", requiresAdmin: true},
     ],

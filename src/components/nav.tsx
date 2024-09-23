@@ -1,17 +1,26 @@
 import React from "react";
 import {useLocalStorage, useWindowSize} from "@uidotdev/usehooks";
-
-import "../styles/nav.css";
 import {Divider, Stack} from "@mui/material";
 import {Link} from "react-router-dom";
+
+import "../styles/nav.css";
+import {navConfig} from "../configs/nav";
 import MenuCloseButton from "./menuCloseButton";
 
 const Nav = () => {
-    const {width} = useWindowSize();
-    const isFullNav = width === null || width >= (5 * (120 + 1) - 1)
-
     const [token,] = useLocalStorage<string | undefined>("token", undefined);
     const hasLoggedIn = Boolean(token);
+
+    function getCurrentNavItemCount() {
+        return navConfig.items.filter((item) => {
+            if (item.requiresAdmin === undefined) return true;
+            if (item.requiresAdmin) return hasLoggedIn;
+            return !hasLoggedIn;
+        }).length;
+    }
+
+    const {width} = useWindowSize();
+    const isFullNav = width === null || width >= (getCurrentNavItemCount() * (120 + 1) - 1);
 
     if (!isFullNav) {
         return (
@@ -47,12 +56,17 @@ const Nav = () => {
                 alignItems: "center",
             }}
         >
-            <Link to="/">Notes</Link>
-            <Link to="/profile">Profile</Link>
-            <Link to="/photo">Photo</Link>
-            <Link to="https://wordle-plus.netlify.app/">Wordle+</Link>
-            {!hasLoggedIn && <Link to="/login">Login</Link>}
-            {hasLoggedIn && <Link to="/admin">Admin</Link>}
+            {navConfig.items.map((item, index) => {
+                if (item.requiresAdmin === undefined) return (
+                    <Link key={index} to={item.to}>{item.value}</Link>
+                );
+                if (item.requiresAdmin) return (
+                    hasLoggedIn && <Link key={index} to={item.to}>{item.value}</Link>
+                );
+                return (
+                    !hasLoggedIn && <Link key={index} to={item.to}>{item.value}</Link>
+                );
+            })}
         </Stack>
     )
 };
