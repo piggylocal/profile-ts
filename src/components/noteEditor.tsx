@@ -17,7 +17,7 @@ const NoteEditor = () => {
     };
 
     return (
-        <main className="editor">
+        <main className="editor center">
             <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     <TabList onChange={handleChange} aria-label="editor tabs">
