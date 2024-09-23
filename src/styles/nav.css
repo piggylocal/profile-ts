@@ -24,5 +24,8 @@ header nav a:hover {
   cursor: pointer;
   background-color: #eeeeee;
 }
+header nav .nav-overlay a {
+  width: 100%;
+}
 
 /*# sourceMappingURL=nav.css.map */

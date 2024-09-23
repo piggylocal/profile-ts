@@ -6,8 +6,13 @@ import {Link} from "react-router-dom";
 import "../styles/nav.css";
 import {navConfig} from "../configs/nav";
 import MenuCloseButton from "./menuCloseButton";
+import NavOverlay from "./navOverlay";
 
 const Nav = () => {
+    const ref = React.useRef<HTMLElement>(null);
+
+    const [showMenuOverlay, setShowMenuOverlay] = React.useState(false);
+
     const [token,] = useLocalStorage<string | undefined>("token", undefined);
     const hasLoggedIn = Boolean(token);
 
@@ -22,10 +27,17 @@ const Nav = () => {
     const {width} = useWindowSize();
     const isFullNav = width === null || width >= (getCurrentNavItemCount() * (120 + 1) - 1);
 
+    React.useEffect(() => {
+        if (isFullNav) {
+            setShowMenuOverlay(false);
+        }
+    }, [isFullNav]);
+
     if (!isFullNav) {
         return (
             <Stack
                 component="nav"
+                ref={ref}
                 direction="row"
                 sx={{
                     justifyContent: "center",
@@ -33,7 +45,16 @@ const Nav = () => {
                     height: "42.5px"
                 }}
             >
-                <MenuCloseButton/>
+                <NavOverlay
+                    navRef={ref}
+                    hasLoggedIn={hasLoggedIn}
+                    visibility={showMenuOverlay}
+                    setVisibility={setShowMenuOverlay}
+                />
+                <MenuCloseButton
+                    showMenuOverlay={showMenuOverlay}
+                    setShowMenuOverlay={setShowMenuOverlay}
+                />
                 <img
                     src={process.env.PUBLIC_URL + "/mono-pine.svg"}
                     alt=""

@@ -2,13 +2,14 @@ import React from "react";
 
 import "../styles/menuCloseButton.css";
 
-const MenuCloseButton = () => {
-    const ref = React.useRef<HTMLDivElement>(null);
+const MenuCloseButton = ({showMenuOverlay, setShowMenuOverlay}: {
+    showMenuOverlay: boolean,
+    setShowMenuOverlay: React.Dispatch<React.SetStateAction<boolean>>,
+}) => {
     return (
         <div
-            className="menu-close"
-            ref={ref}
-            onClick={() => ref.current?.classList.toggle("close")}
+            className={`menu-close ${showMenuOverlay ? "close" : ""}`}
+            onClick={() => setShowMenuOverlay(!showMenuOverlay)}
             style={{
                 marginTop: "14px",
                 marginLeft: "16px",
