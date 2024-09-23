@@ -1,19 +1,23 @@
 import React from "react";
-import {MilkdownEditorWrapper} from "./milkdownEditorWrapper";
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Box from '@mui/material/Box';
-import TextField from "@mui/material/TextField";
 
 import "../styles/editor.css";
+import {MilkdownEditorWrapper} from "./milkdownEditorWrapper";
+import NoteMarkdown from "./noteMarkdown";
 
 const NoteEditor = () => {
     const [value, setValue] = React.useState('wysiwyg');
+    const [activePanelValue, setActivePanelValue] = React.useState('wysiwyg');
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-        setValue(newValue);
+        setActivePanelValue(newValue);
+        setTimeout(() => {
+            setValue(newValue);
+        }, 10);
     };
 
     return (
@@ -26,14 +30,10 @@ const NoteEditor = () => {
                     </TabList>
                 </Box>
                 <TabPanel value="wysiwyg">
-                    <MilkdownEditorWrapper/>
+                    <MilkdownEditorWrapper activePanelValue={activePanelValue}/>
                 </TabPanel>
                 <TabPanel value="markdown">
-                    <TextField
-                        label="Markdown"
-                        multiline
-                        fullWidth={true}
-                    />
+                    <NoteMarkdown activePanelValue={activePanelValue}/>
                 </TabPanel>
             </TabContext>
         </main>
