@@ -24,6 +24,9 @@ header nav a:hover {
   cursor: pointer;
   background-color: #eeeeee;
 }
+header nav img.logo:hover {
+  cursor: pointer;
+}
 header nav .nav-overlay a {
   width: 100%;
 }

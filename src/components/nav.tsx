@@ -1,7 +1,7 @@
 import React from "react";
 import {useLocalStorage, useWindowSize} from "@uidotdev/usehooks";
 import {Divider, Stack} from "@mui/material";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 import "../styles/nav.css";
 import {navConfig} from "../configs/nav";
@@ -26,6 +26,8 @@ const Nav = () => {
 
     const {width} = useWindowSize();
     const isFullNav = width === null || width >= (getCurrentNavItemCount() * (120 + 1) - 1);
+
+    const navigate = useNavigate();
 
     React.useEffect(() => {
         if (isFullNav) {
@@ -61,6 +63,10 @@ const Nav = () => {
                     className="logo"
                     style={{
                         height: "30.5px",
+                    }}
+                    onClick={() => {
+                        navigate("/");
+                        setShowMenuOverlay(false);
                     }}
                 />
             </Stack>
