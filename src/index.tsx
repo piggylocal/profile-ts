@@ -14,7 +14,7 @@ import Notes from "./components/notes";
 import Login from "./components/login";
 import axios from "axios";
 import Admin from "./components/admin";
-import {NoteEditor} from "./components/noteEditor";
+import NoteEditor from "./components/noteEditor";
 
 axios.interceptors.request.use(function (config) {
     if (config.url?.startsWith(process.env.REACT_APP_API as string)) {

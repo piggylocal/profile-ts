@@ -1,0 +1,14 @@
+main.editor {
+  padding: 1rem;
+
+  div.editor {
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  div[role=tabpanel] {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
