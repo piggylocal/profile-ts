@@ -14,7 +14,7 @@ const NavOverlay = ({navRef, hasLoggedIn, visibility, setVisibility}: {
         setVisibility(false);
     }
 
-    const navHeight = navRef.current?.clientHeight ?? 0;
+    const navHeight = navRef.current?.clientHeight ?? 42.5;
 
     return (
         <Stack
