@@ -12,7 +12,6 @@ const NoteMarkdown = ({activePanelValue}: {activePanelValue: string}) => {
             return;
         }
         element.value = content;
-        element.focus();
     }, [content]);
     React.useEffect(() => {
         if (activePanelValue === "markdown") {
@@ -26,6 +25,7 @@ const NoteMarkdown = ({activePanelValue}: {activePanelValue: string}) => {
             inputRef={ref}
             label="Markdown"
             multiline
+            rows={20}
             fullWidth={true}
         />
     )
