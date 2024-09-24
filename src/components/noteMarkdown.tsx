@@ -6,7 +6,7 @@ import {languages} from '@codemirror/language-data';
 
 const NoteMarkdown = ({activePanelValue}: { activePanelValue: string }) => {
     const [content, setContent] = useLocalStorage("content", "");
-    const [code, setCode] = React.useState<string>("");
+    const [code, setCode] = React.useState<string>(JSON.parse(localStorage.getItem("content") || '""'));
 
     React.useEffect(() => {
         setCode(content);
