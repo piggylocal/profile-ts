@@ -1,10 +1,13 @@
 import React from "react";
-import {Button, Divider, Stack} from "@mui/material";
+import {Button, Stack} from "@mui/material";
 import {useLocalStorage} from "@uidotdev/usehooks";
 import {useNavigate} from "react-router-dom";
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {blueGrey, grey} from "@mui/material/colors";
 import axios from "axios";
+import Box from "@mui/material/Box";
+
+import NoteManager from "./noteManager";
 
 const theme = createTheme({
     palette: {
@@ -12,6 +15,14 @@ const theme = createTheme({
         secondary: grey
     },
 });
+
+const DashboardItem = ({children}: { children: React.ReactNode }) => {
+    return (
+        <Box className="dashboard-item" sx={{width: "100%"}}>
+            {children}
+        </Box>
+    )
+}
 
 const Admin = () => {
     const [pv, setPV] = React.useState(0);
@@ -45,17 +56,18 @@ const Admin = () => {
         <div className="center" style={{minWidth: "min(70%, 300px)"}}>
             <ThemeProvider theme={theme}>
                 <Stack
+                    className="dashboard-stack"
                     direction="column"
                     spacing={1}
-                    divider={<Divider flexItem/>}
                     sx={{
                         justifyContent: "center",
                         alignItems: "center",
                     }}
                 >
-                    <h2 style={{width: "100%", color: blueGrey[900]}}>
+                    <DashboardItem><NoteManager/></DashboardItem>
+                    <DashboardItem>
                         PV Count:<span style={{float: "right"}}>{pv}</span>
-                    </h2>
+                    </DashboardItem>
                     <Button variant="text" onClick={logout}>Logout</Button>
                 </Stack>
             </ThemeProvider>
