@@ -8,13 +8,18 @@ import {useNavigate} from "react-router-dom";
 import "../styles/editor.css";
 import {MilkdownEditorWrapper} from "./milkdownEditorWrapper";
 import NoteMarkdown from "./noteMarkdown";
+import {EditorTarget} from "../configs/note";
 
-const TabPanel = ({children, value, name}: {children: React.ReactNode, value: string, name: string}) => {
+const TabPanel = ({children, value, editorType}: {
+    children: React.ReactNode,
+    value: EditorTarget,
+    editorType: EditorTarget
+}) => {
     return (
         <div
             role="tabpanel"
-            hidden={value !== name}
-            aria-labelledby={`editor-tab-${name}`}
+            hidden={value !== editorType}
+            aria-labelledby={`editor-tab-${editorType}`}
         >
             <Box sx={{ paddingTop: 3, paddingBottom: 3 }}>
                 {children}
@@ -24,27 +29,46 @@ const TabPanel = ({children, value, name}: {children: React.ReactNode, value: st
 }
 
 const NoteEditor = () => {
-    const [value, setValue] = React.useState('wysiwyg');
+    // Current active (visible) editor.
+    const [value, setValue] = React.useState<EditorTarget>(EditorTarget.WYSIWYG);
+    const [content, setContent] = React.useState<string>("");
+    // The target we are going to activate. Not necessarily an editor (can also be
+    // "BACK" page, "NEXT" page, etc.). The rule is that we MUST finish all the
+    // state transitions before we actually navigate to the target. After we navigate
+    // to the target, NO state transition is allowed.
+    const [target, setTarget] = React.useState<EditorTarget>(EditorTarget.WYSIWYG);
 
     const navigate = useNavigate();
 
-    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-        setValue(newValue);
+    const handleChange = (_: React.SyntheticEvent, newValue: EditorTarget) => {
+        setTarget(newValue);
     };
 
     return (
         <main className="editor center">
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={value} onChange={handleChange} aria-label="editor tabs">
-                    <Tab label="WYSIWYG" value="wysiwyg" />
-                    <Tab label="Markdown" value="markdown" />
+                    <Tab label="WYSIWYG" value={EditorTarget.WYSIWYG} />
+                    <Tab label="Markdown" value={EditorTarget.MARKDOWN} />
                 </Tabs>
             </Box>
-            <TabPanel name="wysiwyg" value={value}>
-                <MilkdownEditorWrapper activePanelValue={value}/>
+            <TabPanel editorType={EditorTarget.WYSIWYG} value={value}>
+                <MilkdownEditorWrapper
+                    target={target}
+                    content={content}
+                    setContent={setContent}
+                    editorValue={value}
+                    setEditorValue={setValue}
+                />
             </TabPanel>
-            <TabPanel name="markdown" value={value}>
-                <NoteMarkdown activePanelValue={value}/>
+            <TabPanel editorType={EditorTarget.MARKDOWN} value={value}>
+                <NoteMarkdown
+                    target={target}
+                    content={content}
+                    setContent={setContent}
+                    editorValue={value}
+                    setEditorValue={setValue}
+                />
             </TabPanel>
             <Stack
                 className="button-panel"
