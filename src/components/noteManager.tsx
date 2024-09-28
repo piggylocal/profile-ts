@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import {useNavigate} from "react-router-dom";
 
 import {NoteInfo} from "../dto/note";
 import {getNotes} from "../managers/note";
@@ -50,6 +51,7 @@ const NoteManager = () => {
     const [notes, setNotes] = React.useState<NoteInfo[]>([]);
     const [openDeleteNoteDialog, setOpenDeleteNoteDialog] = React.useState(false);
     const [currentNoteId, setCurrentNoteId] = React.useState<number | null>(null);
+    const navigate = useNavigate();
 
     const currentNote: NoteInfo | undefined = notes.find((note) => note.id === currentNoteId);
 
@@ -80,7 +82,12 @@ const NoteManager = () => {
                     marginRight: 2,
                 }}>
                     {notes.length}
-                    <Button style={{minWidth: 0, padding: 0, marginLeft: "4px"}}><AddCircleIcon/></Button>
+                    <Button
+                        style={{minWidth: 0, padding: 0, marginLeft: "4px"}}
+                        onClick={() => navigate("editor")}
+                    >
+                        <AddCircleIcon/>
+                    </Button>
                 </Box>
             </Box>
             <TableContainer component={Box} sx={{marginTop: 1.5}}>

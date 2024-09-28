@@ -13,8 +13,7 @@ import NoteDisplay from "./components/noteDisplay";
 import Notes from "./components/notes";
 import Login from "./components/login";
 import axios from "axios";
-import Admin from "./components/admin";
-import NoteEditor from "./components/noteEditor";
+import Admin, {adminRoutes} from "./components/admin";
 
 axios.interceptors.request.use(function (config) {
     if (config.url?.startsWith(process.env.REACT_APP_API as string)) {
@@ -46,10 +45,6 @@ const router = createBrowserRouter([
                 element: <NoteDisplay/>
             },
             {
-                path: "/editor",
-                element: <NoteEditor/>
-            },
-            {
                 path: "/profile",
                 element: <Profile/>
             },
@@ -63,10 +58,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "/admin",
-                element: <Admin/>
+                element: <Admin/>,
+                children: adminRoutes,
             }
         ]
-    }
+    },
 ]);
 
 root.render(
