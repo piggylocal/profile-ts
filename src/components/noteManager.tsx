@@ -12,6 +12,7 @@ import {
     TableRow
 } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import {NoteInfo} from "../dto/note";
 import {getNotes} from "../managers/note";
@@ -63,8 +64,24 @@ const NoteManager = () => {
 
     return (
         <Box sx={{width: "100%"}}>
-            <Box sx={{width: "100%", marginTop: 0.5, marginBottom: 0.5}}>
-                Note Count:<span style={{float: "right"}}>{notes.length}</span>
+            <Box sx={{
+                width: "100%",
+                marginTop: 0.5,
+                marginBottom: 0.5,
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+            }}>
+                Note Count:
+                <Box sx={{
+                    float: "right",
+                    display: "flex",
+                    alignItems: "center",
+                    marginRight: 2,
+                }}>
+                    {notes.length}
+                    <Button style={{minWidth: 0, padding: 0, marginLeft: "4px"}}><AddCircleIcon/></Button>
+                </Box>
             </Box>
             <TableContainer component={Box} sx={{marginTop: 1.5}}>
                 <Table sx={{minWidth: 400}} size="small" aria-label="note table">
