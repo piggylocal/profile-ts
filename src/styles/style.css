@@ -95,21 +95,9 @@ div.center {
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 100vw;
+  min-width: min(70vw, 300px);
   padding: 1.5rem;
   font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont;
-}
-div.center form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-div.center form > :not(style) {
-  margin: 8px 0;
-  width: 30ch;
-}
-div.center form .hidden {
-  display: none;
 }
 div.center button {
   min-width: 15ch;

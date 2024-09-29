@@ -126,7 +126,6 @@ const NoteEditor = () => {
                     </Button>
                     <Button
                         variant="outlined"
-                        color="secondary"
                         onClick={() => setTarget(EditorTarget.DRAFT)}
                     >
                         Save draft

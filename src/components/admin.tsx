@@ -3,6 +3,7 @@ import React from "react";
 
 import Dashboard from "./dashboard";
 import NoteEditor from "./noteEditor";
+import NoteMetaForm from "./noteMetaForm";
 
 const Admin = () => {
     return <Outlet/>
@@ -17,5 +18,9 @@ export const adminRoutes: RouteObject[] = [
     {
         path: "editor",
         element: <NoteEditor/>,
+    },
+    {
+        path: "meta",
+        element: <NoteMetaForm/>,
     }
 ]

@@ -53,7 +53,7 @@ const Dashboard = () => {
     }, []);
 
     return (
-        <div className="center" style={{minWidth: "min(70%, 300px)"}}>
+        <div className="center">
             <ThemeProvider theme={theme}>
                 <Stack
                     className="dashboard-stack"

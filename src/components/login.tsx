@@ -10,6 +10,8 @@ import {useLocalStorage} from "@uidotdev/usehooks";
 
 import HoverImgBox from "./hoverImgBox";
 
+import "../styles/login.css";
+
 enum LoginError {
     NONE,
     MISMATCH,
@@ -69,7 +71,7 @@ const Login = () => {
     return (
         <div className="center">
             <ThemeProvider theme={theme}>
-                <Box component="form" noValidate autoComplete="off">
+                <Box component="form" noValidate autoComplete="off" className="login">
                     <Alert
                         id="login-mismatch"
                         className={loginError === LoginError.MISMATCH ? "" : "hidden"}
