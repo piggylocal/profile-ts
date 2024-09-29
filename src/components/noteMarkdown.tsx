@@ -5,17 +5,24 @@ import {languages} from '@codemirror/language-data';
 
 import {EditorTarget} from "../configs/note";
 
-const NoteMarkdown = ({target, content, setContent, editorValue, setEditorValue}: {
+const NoteMarkdown = ({target, setTarget, content, setContent, editorValue, setEditorValue, storeContent}: {
     target: EditorTarget,
+    setTarget: React.Dispatch<React.SetStateAction<EditorTarget>>,
     content: string,
     setContent: React.Dispatch<React.SetStateAction<string>>,
     editorValue: EditorTarget,
     setEditorValue: React.Dispatch<React.SetStateAction<EditorTarget>>,
+    storeContent: () => void,
 }) => {
     const [code, setCode] = React.useState<string>(JSON.parse(localStorage.getItem("content") || '""'));
 
     useEffect(() => {
         if (target === EditorTarget.MARKDOWN && editorValue === EditorTarget.MARKDOWN) {
+            return;
+        }
+        if (target === EditorTarget.INIT) {
+            setCode(content);
+            setTarget(EditorTarget.MARKDOWN);
             return;
         }
         if (target === EditorTarget.MARKDOWN) {
@@ -29,9 +36,11 @@ const NoteMarkdown = ({target, content, setContent, editorValue, setEditorValue}
             }
             if (target === EditorTarget.WYSIWYG) {
                 setEditorValue(EditorTarget.WYSIWYG);
+            } else if (target === EditorTarget.DRAFT) {
+                storeContent();
             }
         }
-    }, [code, setCode, target, content, setContent, editorValue, setEditorValue]);
+    }, [code, setCode, target, setTarget, content, setContent, editorValue, setEditorValue, storeContent]);
 
     return (
         <CodeMirror
