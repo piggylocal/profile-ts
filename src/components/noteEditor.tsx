@@ -3,7 +3,7 @@ import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Box from '@mui/material/Box';
 import {Button, Stack} from "@mui/material";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 import {useLocalStorage} from "@uidotdev/usehooks";
 
 import "../styles/editor.css";
@@ -43,6 +43,8 @@ const NoteEditor = () => {
 
     const navigate = useNavigate();
 
+    const location = useLocation();
+
     const handleChange = (_: React.SyntheticEvent, newValue: EditorTarget) => {
         setTarget(newValue);
     };
@@ -53,6 +55,10 @@ const NoteEditor = () => {
         setContentStore(content);
         setTarget(value);
     }
+
+    React.useEffect(() => {
+        setTarget(EditorTarget.INIT);
+    }, [location]);
 
     return (
         <main className="editor center">
