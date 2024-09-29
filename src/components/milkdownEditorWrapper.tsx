@@ -60,7 +60,7 @@ const MilkdownEditor = ({target, setTarget, content, setContent, editorValue, se
                 }
                 if (target === EditorTarget.MARKDOWN) {
                     setEditorValue(EditorTarget.MARKDOWN);
-                } else if (target === EditorTarget.DRAFT) {
+                } else if (target === EditorTarget.DRAFT || target === EditorTarget.BACK) {
                     storeContent();
                 }
             });

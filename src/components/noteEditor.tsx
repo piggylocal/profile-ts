@@ -54,6 +54,9 @@ const NoteEditor = () => {
     const storeContent = () => {
         setContentStore(content);
         setTarget(value);
+        if (target === EditorTarget.BACK) {
+            navigate(`${location.pathname}/..`);
+        }
     }
 
     React.useEffect(() => {
@@ -102,7 +105,7 @@ const NoteEditor = () => {
                 <Button
                     variant="outlined"
                     style={{marginRight: "auto"}}
-                    onClick={() => navigate("..")}
+                    onClick={() => setTarget(EditorTarget.BACK)}
                 >
                     Back
                 </Button>

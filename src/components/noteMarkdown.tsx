@@ -36,7 +36,7 @@ const NoteMarkdown = ({target, setTarget, content, setContent, editorValue, setE
             }
             if (target === EditorTarget.WYSIWYG) {
                 setEditorValue(EditorTarget.WYSIWYG);
-            } else if (target === EditorTarget.DRAFT) {
+            } else if (target === EditorTarget.DRAFT || target === EditorTarget.BACK) {
                 storeContent();
             }
         }
