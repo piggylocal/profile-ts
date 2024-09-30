@@ -1,0 +1,15 @@
+div.center form.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+div.center form.login > :not(style) {
+  margin: 8px 0;
+  width: 30ch;
+}
+div.center form.login .hidden {
+  display: none;
+}
+
+/*# sourceMappingURL=login.css.map */
