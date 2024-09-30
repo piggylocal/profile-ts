@@ -1,10 +1,14 @@
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import {Button, Stack} from "@mui/material";
+import {useNavigate, useLocation} from "react-router-dom";
 
 import "../styles/noteMetaForm.css";
 
 const NoteMetaForm = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+
     return (
         <Box className="center">
             <Box component="form" noValidate autoComplete="off" style={{width: "100%"}}>
@@ -25,6 +29,7 @@ const NoteMetaForm = () => {
                     <Button
                         variant="outlined"
                         style={{marginRight: "auto"}}
+                        onClick={() => navigate(`${location.pathname}/../editor`)}
                     >
                         Back
                     </Button>

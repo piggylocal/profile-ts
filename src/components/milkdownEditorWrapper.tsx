@@ -60,7 +60,9 @@ const MilkdownEditor = ({target, setTarget, content, setContent, editorValue, se
                 }
                 if (target === EditorTarget.MARKDOWN) {
                     setEditorValue(EditorTarget.MARKDOWN);
-                } else if (target === EditorTarget.DRAFT || target === EditorTarget.BACK) {
+                } else if (
+                    target === EditorTarget.DRAFT || target === EditorTarget.BACK || target === EditorTarget.NEXT
+                ) {
                     storeContent();
                 }
             });
@@ -76,7 +78,8 @@ export const MilkdownEditorWrapper = ({
                                           setContent,
                                           editorValue,
                                           setEditorValue,
-                                          storeContent}: {
+                                          storeContent
+                                      }: {
     target: EditorTarget,
     setTarget: React.Dispatch<React.SetStateAction<EditorTarget>>,
     content: string,

@@ -61,6 +61,8 @@ const NoteEditor = () => {
         setTarget(value);
         if (target === EditorTarget.BACK) {
             navigate(`${location.pathname}/..`);
+        } else if (target === EditorTarget.NEXT) {
+            navigate(`${location.pathname}/../meta`);
         }
     }
 
@@ -130,7 +132,12 @@ const NoteEditor = () => {
                     >
                         Save draft
                     </Button>
-                    <Button variant="outlined">Next</Button>
+                    <Button
+                        variant="outlined"
+                        onClick={() => setTarget(EditorTarget.NEXT)}
+                    >
+                        Next
+                    </Button>
                 </Stack>
             </main>
             <Snackbar
