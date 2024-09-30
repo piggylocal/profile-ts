@@ -8,6 +8,9 @@ div.center form > :not(style) {
   margin: 8px 0;
   width: min(60ch, 80vw);
 }
+div.center form .hidden {
+  display: none;
+}
 div.center form button {
   min-width: 0;
 }

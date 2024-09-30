@@ -1,9 +1,10 @@
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import {Button, Stack} from "@mui/material";
+import {Alert, Button, Stack} from "@mui/material";
 import {useNavigate, useLocation} from "react-router-dom";
 
 import "../styles/noteMetaForm.css";
+import React from "react";
 
 function inferTitleFromContent(content: string): string {
     const lines = content.split("\n");
@@ -26,6 +27,14 @@ const NoteMetaForm = () => {
     return (
         <Box className="center">
             <Box component="form" noValidate autoComplete="off" style={{width: "100%"}}>
+                <Alert
+                    id="submit-error"
+                    className={"hidden"}
+                    severity="error"
+                    style={{width: "100%"}}
+                >
+                    Submit failed.
+                </Alert>
                 <p>Enter your note metadata:</p>
                 <TextField label="Title" name="title" defaultValue={defaultTitle}/>
                 <TextField label="Author" name="author" defaultValue={"acst"}/>
