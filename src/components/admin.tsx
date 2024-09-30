@@ -4,8 +4,13 @@ import React from "react";
 import Dashboard from "./dashboard";
 import NoteEditor from "./noteEditor";
 import NoteMetaForm from "./noteMetaForm";
+import NotFound from "./notFound";
 
 const Admin = () => {
+    const tokenJSON = localStorage.getItem("token");
+    if (!tokenJSON) {
+        return <NotFound/>
+    }
     return <Outlet/>
 }
 
