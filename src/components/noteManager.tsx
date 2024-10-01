@@ -14,6 +14,7 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
 
 import {NoteInfo} from "../dto/note";
 import {getNotes} from "../managers/note";
@@ -26,6 +27,19 @@ const DeleteNoteDialog = ({open, setOpen, currentNote}: {
     const handleClose = () => {
         setOpen(false);
     };
+
+    const handleDelete = async () => {
+        if (!currentNote) {
+            return;
+        }
+        try {
+            await axios.delete(`${process.env.REACT_APP_API}/note/${currentNote.id}`);
+        } catch (error) {
+            console.error(error);
+        }
+        handleClose();
+        window.location.reload();   // refresh the page to reflect the deletion
+    }
 
     return (
         <Dialog
@@ -41,7 +55,7 @@ const DeleteNoteDialog = ({open, setOpen, currentNote}: {
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleClose} autoFocus={true}>Cancel</Button>
-                <Button onClick={handleClose} color="error">Delete</Button>
+                <Button onClick={handleDelete} color="error">Delete</Button>
             </DialogActions>
         </Dialog>
     )
