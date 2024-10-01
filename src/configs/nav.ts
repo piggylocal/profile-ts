@@ -11,8 +11,6 @@ const navConfig: NavConfig = {
     items: [
         {value: "Notes", to: "/"},
         {value: "Profile", to: "/profile"},
-        {value: "Photo", to: "/photo"},
-        {value: "Wordle+", to: "https://wordle-plus.netlify.app/"},
         {value: "Login", to: "/login", requiresAdmin: false},
         {value: "Admin", to: "/admin", requiresAdmin: true},
     ],

@@ -1,3 +1,5 @@
+// This component is currently not in use.
+
 const Photo = () => {
     return (
         <main className="main_about">

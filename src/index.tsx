@@ -8,7 +8,6 @@ import './styles/style.css';
 import './styles/about.css';
 import './styles/hoverImgBox.css';
 import Profile from "./components/profile";
-import Photo from "./components/photo";
 import NoteDisplay from "./components/noteDisplay";
 import Notes from "./components/notes";
 import Login from "./components/login";
@@ -48,10 +47,6 @@ const router = createBrowserRouter([
             {
                 path: "/profile",
                 element: <Profile/>
-            },
-            {
-                path: "/photo",
-                element: <Photo/>
             },
             {
                 path: "/login",
