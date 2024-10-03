@@ -103,10 +103,10 @@ const Login = () => {
                             if (event.key !== "Enter") {
                                 return;
                             }
-                            /* if (password) {
+                            if (password) {
                                 void getToken(username, password);
                                 return;
-                            } */
+                            }
                             if (passwordRef.current) {
                                 passwordRef.current.focus();
                             }
