@@ -37,14 +37,9 @@ const NavOverlay = ({navRef, hasLoggedIn, visibility, setVisibility}: {
             onClick={closeNavOverlay}
         >
             {navConfig.items.map((item, index) => {
-                if (item.requiresAdmin === undefined) return (
-                    <Link key={index} to={item.to} onClick={closeNavOverlay}>{item.value}</Link>
-                );
-                if (item.requiresAdmin) return (
-                    hasLoggedIn && <Link key={index} to={item.to} onClick={closeNavOverlay}>{item.value}</Link>
-                );
+                const show = item.requiresAdmin === undefined || item.requiresAdmin === hasLoggedIn;
                 return (
-                    !hasLoggedIn && <Link key={index} to={item.to} onClick={closeNavOverlay}>{item.value}</Link>
+                    show && <Link key={index} to={item.to}>{item.value}</Link>
                 );
             })}
         </Stack>
