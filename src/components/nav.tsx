@@ -9,9 +9,12 @@ import MenuCloseButton from "./menuCloseButton";
 import NavOverlay from "./navOverlay";
 
 const Nav = () => {
+    const itemHasChildren = navConfig.items.map((item) => item.children !== undefined);
+
     const ref = React.useRef<HTMLElement>(null);
 
     const [showMenuOverlay, setShowMenuOverlay] = React.useState(false);
+    const [indexExpanded, setIndexExpanded] = React.useState(-1);
 
     const [token,] = useLocalStorage<string | undefined>("token", undefined);
     const hasLoggedIn = Boolean(token);
@@ -52,6 +55,8 @@ const Nav = () => {
                     hasLoggedIn={hasLoggedIn}
                     visibility={showMenuOverlay}
                     setVisibility={setShowMenuOverlay}
+                    indexExpanded={indexExpanded}
+                    setIndexExpanded={setIndexExpanded}
                 />
                 <MenuCloseButton
                     showMenuOverlay={showMenuOverlay}

@@ -4,17 +4,19 @@ import {Stack} from "@mui/material";
 import {navConfig} from "../configs/nav";
 import {Link} from "react-router-dom";
 
-const NavOverlay = ({navRef, hasLoggedIn, visibility, setVisibility}: {
+const NavOverlay = ({navRef, hasLoggedIn, visibility, setVisibility, indexExpanded, setIndexExpanded}: {
     navRef: React.RefObject<HTMLElement>,
     hasLoggedIn: boolean,
     visibility: boolean,
     setVisibility: React.Dispatch<React.SetStateAction<boolean>>,
+    indexExpanded: number,
+    setIndexExpanded: React.Dispatch<React.SetStateAction<number>>,
 }) => {
+    const navHeight = navRef.current?.clientHeight ?? 42.5;
+
     function closeNavOverlay() {
         setVisibility(false);
     }
-
-    const navHeight = navRef.current?.clientHeight ?? 42.5;
 
     return (
         <Stack

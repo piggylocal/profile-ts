@@ -2,6 +2,7 @@ type NavItemConfig = {
     value: string,
     to: string,
     requiresAdmin?: boolean,
+    children?: NavItemConfig[],
 }
 type NavConfig = {
     items: NavItemConfig[],
@@ -9,7 +10,14 @@ type NavConfig = {
 
 const navConfig: NavConfig = {
     items: [
-        {value: "Notes", to: "/"},
+        {
+            value: "Notes",
+            to: "/",
+            children: [
+                {value: "All", to: "/"},
+                {value: "CS", to: "/"},
+            ]
+        },
         {value: "Profile", to: "/profile"},
         {value: "Login", to: "/login", requiresAdmin: false},
         {value: "Admin", to: "/admin", requiresAdmin: true},
