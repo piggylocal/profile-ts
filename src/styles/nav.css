@@ -7,7 +7,7 @@ header {
 header nav {
   display: flex;
 }
-header nav a {
+header nav a, header nav span {
   text-decoration: none;
   color: black;
   padding: 0.75rem 1.5rem;
@@ -20,14 +20,14 @@ header nav a {
   font-weight: 200;
   transition: 0.75s ease;
 }
-header nav a:hover {
+header nav a:hover, header nav span:hover {
   cursor: pointer;
   background-color: #eeeeee;
 }
 header nav img.logo:hover {
   cursor: pointer;
 }
-header nav .nav-overlay a {
+header nav .nav-overlay a, header nav .nav-overlay span {
   width: 100%;
 }
 

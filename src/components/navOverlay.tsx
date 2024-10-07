@@ -1,16 +1,16 @@
 import React from "react";
-import {Stack} from "@mui/material";
+import {Collapse, Stack} from "@mui/material";
 
 import {navConfig} from "../configs/nav";
 import {Link} from "react-router-dom";
 
-const NavOverlay = ({navRef, hasLoggedIn, visibility, setVisibility, indexExpanded, setIndexExpanded}: {
+const NavOverlay = ({navRef, hasLoggedIn, visibility, setVisibility, indexExpanded, handleNavClick}: {
     navRef: React.RefObject<HTMLElement>,
     hasLoggedIn: boolean,
     visibility: boolean,
     setVisibility: React.Dispatch<React.SetStateAction<boolean>>,
     indexExpanded: number,
-    setIndexExpanded: React.Dispatch<React.SetStateAction<number>>,
+    handleNavClick: (newIndex: number) => void,
 }) => {
     const navHeight = navRef.current?.clientHeight ?? 42.5;
 
@@ -40,8 +40,43 @@ const NavOverlay = ({navRef, hasLoggedIn, visibility, setVisibility, indexExpand
         >
             {navConfig.items.map((item, index) => {
                 const show = item.requiresAdmin === undefined || item.requiresAdmin === hasLoggedIn;
+                if (!show) {
+                    return null;
+                }
+                const hasChildren = item.children !== undefined && item.children.length > 0;
                 return (
-                    show && <Link key={index} to={item.to}>{item.value}</Link>
+                    <>
+                        {hasChildren && <span
+                            key={index}
+                            onClick={(event) => {
+                                event.stopPropagation();
+                                handleNavClick(index);
+                            }}
+                        >
+                            {item.value}
+                        </span>}
+                        {!hasChildren && <Link
+                            key={index}
+                            to={item.to}
+                            onClick={() => {
+                                handleNavClick(index);
+                            }}
+                        >
+                            {item.value}
+                        </Link>}
+                        <Collapse
+                            in={indexExpanded === index}
+                            sx={{
+                                width: "100%",
+                                boxShadow: "rgba(0, 0, 0, 1) 0px 3px 9px -9px inset, " +
+                                    "rgba(0, 0, 0, 1) 0px -3px 9px -9px inset;"
+                            }}
+                        >
+                            {item.children?.map((child, childIndex) => (
+                                <Link key={childIndex} to={child.to}>{child.value}</Link>
+                            ))}
+                        </Collapse>
+                    </>
                 );
             })}
         </Stack>

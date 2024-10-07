@@ -27,6 +27,18 @@ const Nav = () => {
         }).length;
     }
 
+    function handleNavClick(newIndex: number) {
+        if (indexExpanded === newIndex) {
+            setIndexExpanded(-1);
+            return
+        }
+        if (itemHasChildren[newIndex]) {
+            setIndexExpanded(newIndex);
+        } else {
+            setIndexExpanded(-1);
+        }
+    }
+
     const {width} = useWindowSize();
     const isFullNav = width === null || width >= (getCurrentNavItemCount() * (120 + 1) - 1);
 
@@ -56,7 +68,7 @@ const Nav = () => {
                     visibility={showMenuOverlay}
                     setVisibility={setShowMenuOverlay}
                     indexExpanded={indexExpanded}
-                    setIndexExpanded={setIndexExpanded}
+                    handleNavClick={handleNavClick}
                 />
                 <MenuCloseButton
                     showMenuOverlay={showMenuOverlay}

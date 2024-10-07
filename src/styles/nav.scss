@@ -7,7 +7,7 @@ header {
   nav {
     display: flex;
 
-    a {
+    a, span {
       text-decoration: none;
       color: black;
       padding: 0.75rem 1.5rem;
@@ -31,7 +31,7 @@ header {
     }
 
     .nav-overlay {
-      a {
+      a, span {
         width: 100%;
       }
     }
