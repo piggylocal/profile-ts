@@ -30,5 +30,14 @@ header nav img.logo:hover {
 header nav .nav-overlay a, header nav .nav-overlay span {
   width: 100%;
 }
+header nav .nav-overlay span svg {
+  position: absolute;
+  right: 4px;
+  transform: rotate(-90deg);
+  transition: all 0.3s cubic-bezier(0.5, -0.6, 0.19, 1);
+}
+header nav .nav-overlay span svg.expanded {
+  transform: rotate(0);
+}
 
 /*# sourceMappingURL=nav.css.map */

@@ -3,6 +3,7 @@ import {Collapse, Stack} from "@mui/material";
 
 import {navConfig} from "../configs/nav";
 import {Link} from "react-router-dom";
+import MenuMore from "./menuMore";
 
 const NavOverlay = ({navRef, hasLoggedIn, visibility, setVisibility, indexExpanded, handleNavClick}: {
     navRef: React.RefObject<HTMLElement>,
@@ -54,6 +55,7 @@ const NavOverlay = ({navRef, hasLoggedIn, visibility, setVisibility, indexExpand
                             }}
                         >
                             {item.value}
+                            <MenuMore expanded={indexExpanded === index}/>
                         </span>}
                         {!hasChildren && <Link
                             key={index}

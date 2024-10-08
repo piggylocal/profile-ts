@@ -34,6 +34,17 @@ header {
       a, span {
         width: 100%;
       }
+
+      span svg {
+        position: absolute;
+        right: 4px;
+        transform: rotate(-90deg);
+        transition: all .3s cubic-bezier(0.5,-0.6,0.19,1);
+
+        &.expanded {
+          transform: rotate(0);
+        }
+      }
     }
   }
 }
