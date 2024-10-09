@@ -14,6 +14,7 @@ import Login from "./components/login";
 import axios from "axios";
 import Admin, {adminRoutes} from "./components/admin";
 import NotFound from "./components/notFound";
+import Watch from "./components/ex/watch";
 
 axios.interceptors.request.use(function (config) {
     if (config.url?.startsWith(process.env.REACT_APP_API as string)) {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
                 path: "/admin",
                 element: <Admin/>,
                 children: adminRoutes,
+            },
+            {
+                path: "/watch",
+                element: <Watch/>
             },
             {
                 path: "*",
