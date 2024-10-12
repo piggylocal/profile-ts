@@ -5,18 +5,32 @@ import {navConfig} from "../configs/nav";
 import {Link} from "react-router-dom";
 import MenuMore from "./menuMore";
 
-const NavOverlay = ({navRef, hasLoggedIn, visibility, setVisibility, indexExpanded, handleNavClick}: {
+const NavOverlay = ({navRef, hasLoggedIn, visibility, setVisibility}: {
     navRef: React.RefObject<HTMLElement>,
     hasLoggedIn: boolean,
     visibility: boolean,
     setVisibility: React.Dispatch<React.SetStateAction<boolean>>,
-    indexExpanded: number,
-    handleNavClick: (newIndex: number) => void,
 }) => {
     const navHeight = navRef.current?.clientHeight ?? 42.5;
 
+    const [indexExpanded, setIndexExpanded] = React.useState(-1);
+
+    const itemHasChildren = navConfig.items.map((item) => item.children !== undefined);
+
     function closeNavOverlay() {
         setVisibility(false);
+    }
+
+    function handleNavClick(newIndex: number) {
+        if (indexExpanded === newIndex) {
+            setIndexExpanded(-1);
+            return
+        }
+        if (itemHasChildren[newIndex]) {
+            setIndexExpanded(newIndex);
+        } else {
+            setIndexExpanded(-1);
+        }
     }
 
     return (
@@ -46,9 +60,8 @@ const NavOverlay = ({navRef, hasLoggedIn, visibility, setVisibility, indexExpand
                 }
                 const hasChildren = item.children !== undefined && item.children.length > 0;
                 return (
-                    <>
+                    <React.Fragment key={index}>
                         {hasChildren && <span
-                            key={index}
                             onClick={(event) => {
                                 event.stopPropagation();
                                 handleNavClick(index);
@@ -58,7 +71,6 @@ const NavOverlay = ({navRef, hasLoggedIn, visibility, setVisibility, indexExpand
                             <MenuMore expanded={indexExpanded === index}/>
                         </span>}
                         {!hasChildren && <Link
-                            key={index}
                             to={item.to}
                             onClick={() => {
                                 handleNavClick(index);
@@ -78,7 +90,7 @@ const NavOverlay = ({navRef, hasLoggedIn, visibility, setVisibility, indexExpand
                                 <Link key={childIndex} to={child.to}>{child.value}</Link>
                             ))}
                         </Collapse>
-                    </>
+                    </React.Fragment>
                 );
             })}
         </Stack>

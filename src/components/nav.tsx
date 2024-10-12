@@ -9,12 +9,9 @@ import MenuCloseButton from "./menuCloseButton";
 import NavOverlay from "./navOverlay";
 
 const Nav = () => {
-    const itemHasChildren = navConfig.items.map((item) => item.children !== undefined);
-
     const ref = React.useRef<HTMLElement>(null);
 
     const [showMenuOverlay, setShowMenuOverlay] = React.useState(false);
-    const [indexExpanded, setIndexExpanded] = React.useState(-1);
 
     const [token,] = useLocalStorage<string | undefined>("token", undefined);
     const hasLoggedIn = Boolean(token);
@@ -25,18 +22,6 @@ const Nav = () => {
             if (item.requiresAdmin) return hasLoggedIn;
             return !hasLoggedIn;
         }).length;
-    }
-
-    function handleNavClick(newIndex: number) {
-        if (indexExpanded === newIndex) {
-            setIndexExpanded(-1);
-            return
-        }
-        if (itemHasChildren[newIndex]) {
-            setIndexExpanded(newIndex);
-        } else {
-            setIndexExpanded(-1);
-        }
     }
 
     const {width} = useWindowSize();
@@ -67,8 +52,6 @@ const Nav = () => {
                     hasLoggedIn={hasLoggedIn}
                     visibility={showMenuOverlay}
                     setVisibility={setShowMenuOverlay}
-                    indexExpanded={indexExpanded}
-                    handleNavClick={handleNavClick}
                 />
                 <MenuCloseButton
                     showMenuOverlay={showMenuOverlay}
