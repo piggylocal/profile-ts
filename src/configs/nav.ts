@@ -15,7 +15,7 @@ const navConfig: NavConfig = {
             to: "/",
             children: [
                 {value: "All", to: "/"},
-                {value: "CS", to: "/"},
+                {value: "CS", to: "/cs"},
             ]
         },
         {value: "Profile", to: "/profile"},

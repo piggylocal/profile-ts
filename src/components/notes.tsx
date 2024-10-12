@@ -4,17 +4,17 @@ import {NoteInfo} from "../dto/note";
 import NoteItem from "./noteItem";
 import {getNotes} from "../managers/note";
 
-const Notes = () => {
+const Notes = ({category}: { category?: string }) => {
     const [notes, setNotes] = React.useState<NoteInfo[]>([]);
 
     React.useEffect(() => {
         async function loadNotes() {
-            const notes = await getNotes();
+            const notes = await getNotes(category);
             setNotes(notes);
         }
 
         void loadNotes();
-    }, []);
+    }, [category]);
 
     return (
         <main className="center">

@@ -42,6 +42,10 @@ const router = createBrowserRouter([
                 element: <Notes/>
             },
             {
+                path: "/cs",
+                element: <Notes category="CS"/>
+            },
+            {
                 path: "/:noteId",
                 element: <NoteDisplay/>
             },
