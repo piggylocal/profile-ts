@@ -4,14 +4,20 @@ import {Divider, Stack} from "@mui/material";
 import {Link, useNavigate} from "react-router-dom";
 
 import "../styles/nav.css";
-import {navConfig} from "../configs/nav";
+import {navConfig, NavItemConfig} from "../configs/nav";
 import MenuCloseButton from "./menuCloseButton";
 import NavOverlay from "./navOverlay";
+import NavMenu from "./navMenu";
 
 const Nav = () => {
     const ref = React.useRef<HTMLElement>(null);
+    const itemRefs = React.useRef<Map<number, HTMLSpanElement | null>>(new Map());
+    const addToItemRefs = (el: HTMLSpanElement | null, index: number) => {
+        itemRefs.current.set(index, el);
+    };
 
     const [showMenuOverlay, setShowMenuOverlay] = React.useState(false);
+    const [indexExpanded, setIndexExpanded] = React.useState(-1);
 
     const [token,] = useLocalStorage<string | undefined>("token", undefined);
     const hasLoggedIn = Boolean(token);
@@ -29,11 +35,33 @@ const Nav = () => {
 
     const navigate = useNavigate();
 
+    function handleMouse(event: MouseEvent) {
+        if (!event.target || !(event.target instanceof HTMLElement)) {
+            return;
+        }
+        for (const [index, itemRef] of itemRefs.current) {
+            if (itemRef?.contains(event.target as HTMLElement)) {
+                setIndexExpanded(index);
+                return;
+            }
+        }
+        setIndexExpanded(-1);
+    }
+
     React.useEffect(() => {
         if (isFullNav) {
             setShowMenuOverlay(false);
+            setIndexExpanded(-1);
         }
     }, [isFullNav]);
+
+    React.useEffect(() => {
+        window.addEventListener("mouseover", handleMouse);
+
+        return () => {
+            window.removeEventListener("mouseover", handleMouse);
+        }
+    }, []);
 
     if (!isFullNav) {
         return (
@@ -84,14 +112,26 @@ const Nav = () => {
             }}
         >
             {navConfig.items.map((item, index) => {
-                if (item.requiresAdmin === undefined) return (
-                    <Link key={index} to={item.to}>{item.value}</Link>
-                );
-                if (item.requiresAdmin) return (
-                    hasLoggedIn && <Link key={index} to={item.to}>{item.value}</Link>
-                );
+                const show = item.requiresAdmin === undefined || item.requiresAdmin === hasLoggedIn;
+                if (!show) {
+                    return null;
+                }
+                const hasChildren = item.children !== undefined && item.children.length > 0;
+
+                if (hasChildren) {
+                    return (
+                        <span key={index} ref={(el) => addToItemRefs(el, index)}>
+                            {item.value}
+                            <NavMenu
+                                items={item.children as NavItemConfig[]}
+                                visibility={indexExpanded === index}
+                                setIndexExpanded={setIndexExpanded}
+                            />
+                        </span>
+                    )
+                }
                 return (
-                    !hasLoggedIn && <Link key={index} to={item.to}>{item.value}</Link>
+                    <Link key={index} to={item.to}>{item.value}</Link>
                 );
             })}
         </Stack>

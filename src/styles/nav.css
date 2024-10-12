@@ -24,6 +24,18 @@ header nav a:hover, header nav span:hover {
   cursor: pointer;
   background-color: #eeeeee;
 }
+header nav span .MuiListItemText-root {
+  text-align: center;
+}
+header nav span .MuiListItemText-root span {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+  font-family: "Raleway", system-ui, -apple-system, BlinkMacSystemFont;
+  transition: 0s;
+}
+header nav span .MuiListItemText-root span:hover {
+  background-color: inherit;
+}
 header nav img.logo:hover {
   cursor: pointer;
 }
