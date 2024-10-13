@@ -152,7 +152,7 @@ const Watch = () => {
         <Box sx={{mt: 2}}>
             <Box sx={{margin: 2}}>
                 <TextField
-                    label="url"
+                    label="URL"
                     value={url}
                     onChange={(event) => {
                         setUrl(event.target.value)
