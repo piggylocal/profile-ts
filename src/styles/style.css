@@ -106,6 +106,9 @@ div.center {
 div.center button {
   min-width: 15ch;
 }
+div.center button.MuiIconButton-root {
+  min-width: 0;
+}
 div.center h1, div.center h2, div.center h3, div.center h4, div.center h5, div.center h6 {
   font-weight: 300;
   padding: 6px 8px;
