@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import Box from "@mui/material/Box";
 import {
     Button,
@@ -13,12 +13,18 @@ import {
 } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import ShareIcon from '@mui/icons-material/Share';
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import Tooltip from '@mui/material/Tooltip';
 
 import {NoteInfo} from "../dto/note";
 import {getNotes} from "../managers/note";
+import {GoogleOAuthContext} from "../contexts/googleOAuthContext";
+import {areCredentialsValid} from "../managers/googleOAuth";
+import {googleBloggerScope} from "../configs/googleOAuth";
+
+type Task = () => void | Promise<void>;
 
 const DeleteNoteDialog = ({open, setOpen, currentNote}: {
     open: boolean,
@@ -66,9 +72,20 @@ const NoteManager = () => {
     const [notes, setNotes] = React.useState<NoteInfo[]>([]);
     const [openDeleteNoteDialog, setOpenDeleteNoteDialog] = React.useState(false);
     const [currentNoteId, setCurrentNoteId] = React.useState<number | null>(null);
+    const scheduledTask = React.useRef<Task | null>(null);
     const navigate = useNavigate();
+    const {login: googleLogin, credentials: googleCredentials} = useContext(GoogleOAuthContext);
 
     const currentNote: NoteInfo | undefined = notes.find((note) => note.id === currentNoteId);
+
+    async function postBlogger(note: NoteInfo) {
+        // TODO: implement this function.
+        console.log("Post to Blogger: ", note.id);
+    }
+
+    function createPostBloggerTask(note: NoteInfo): Task {
+        return postBlogger.bind(null, note);
+    }
 
     React.useEffect(() => {
         async function loadNotes() {
@@ -78,6 +95,19 @@ const NoteManager = () => {
 
         void loadNotes();
     }, []);
+
+    React.useEffect(() => {
+        if (!googleCredentials || !areCredentialsValid(googleCredentials, [googleBloggerScope])) {
+            return;
+        }
+        if (!scheduledTask.current) {
+            return;
+        }
+        // Execute the scheduled task if the credentials are valid.
+        const currentTask = scheduledTask.current;
+        scheduledTask.current = null;
+        void currentTask();
+    }, [googleCredentials]);
 
     return (
         <Box sx={{width: "100%"}}>
@@ -121,6 +151,23 @@ const NoteManager = () => {
                                       sx={{'&:last-child td, &:last-child th': {border: 0, paddingBottom: 0}}}>
                                 <TableCell component="th" scope="row">{note.title}</TableCell>
                                 <TableCell align="center">
+                                    <Tooltip title="Repost to Blogger" sx={{mr: 0.5}}>
+                                        <IconButton
+                                            onClick={async () => {
+                                                const task = createPostBloggerTask(note);
+                                                if (googleCredentials && areCredentialsValid(
+                                                    googleCredentials, [googleBloggerScope]
+                                                )) {
+                                                    void task();
+                                                    return;
+                                                }
+                                                scheduledTask.current = task;
+                                                googleLogin();
+                                            }}
+                                        >
+                                            <ShareIcon/>
+                                        </IconButton>
+                                    </Tooltip>
                                     <Tooltip title="Delete">
                                         <IconButton
                                             onClick={() => {

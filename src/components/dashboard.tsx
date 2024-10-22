@@ -8,6 +8,8 @@ import axios from "axios";
 import Box from "@mui/material/Box";
 
 import NoteManager from "./noteManager";
+import GoogleOAuthWrapper from "./googleOAuthWrapper";
+import {googleBloggerScope} from "../configs/googleOAuth";
 
 const theme = createTheme({
     palette: {
@@ -64,7 +66,11 @@ const Dashboard = () => {
                         alignItems: "center",
                     }}
                 >
-                    <DashboardItem><NoteManager/></DashboardItem>
+                    <DashboardItem>
+                        <GoogleOAuthWrapper specifiedScopes={[googleBloggerScope]}>
+                            <NoteManager/>
+                        </GoogleOAuthWrapper>
+                    </DashboardItem>
                     <DashboardItem>
                         PV Count:<span style={{float: "right"}}>{pv}</span>
                     </DashboardItem>

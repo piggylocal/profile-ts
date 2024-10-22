@@ -1,5 +1,6 @@
 import React from 'react';
 import {Outlet, useLocation} from "react-router-dom";
+import {GoogleOAuthProvider} from '@react-oauth/google';
 
 import './App.css';
 import Nav from "./components/nav";
@@ -38,12 +39,12 @@ function App() {
     }, [location])
 
     return (
-        <>
+        <GoogleOAuthProvider clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}>
             <header>
                 <Nav/>
             </header>
             <Outlet/>
-        </>
+        </GoogleOAuthProvider>
     );
 }
 
