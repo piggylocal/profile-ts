@@ -150,7 +150,7 @@ const NoteManager = () => {
                             <TableRow key={note.id}
                                       sx={{'&:last-child td, &:last-child th': {border: 0, paddingBottom: 0}}}>
                                 <TableCell component="th" scope="row">{note.title}</TableCell>
-                                <TableCell align="center">
+                                <TableCell align="center" sx={{minWidth: 120}}>
                                     <Tooltip title="Repost to Blogger" sx={{mr: 0.5}}>
                                         <IconButton
                                             onClick={async () => {
