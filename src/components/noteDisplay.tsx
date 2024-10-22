@@ -1,10 +1,9 @@
-import purify from "dompurify";
-import markdownit from 'markdown-it';
 import React from "react";
 import {useParams} from "react-router-dom";
-import hljs from "highlight.js";
+
 import {Note} from "../dto/note";
 import NotFound from "./notFound";
+import {parseMarkdown} from "../managers/markdown";
 
 const NoteDisplay = () => {
     const {noteId} = useParams();
@@ -23,8 +22,7 @@ const NoteDisplay = () => {
                     return;
                 }
                 const note = await response.json() as Note;
-                const renderedText = markdownit().render(note.content);
-                setContent(renderedText);
+                setContent(parseMarkdown(note.content));
             } catch (error) {
                 console.error(error);
                 setFetchSuccess(false);
@@ -38,13 +36,6 @@ const NoteDisplay = () => {
         void fetchContent();
     }, [noteId, fetchSuccess]);
 
-    React.useEffect(() => {
-        const codeBlocks = document.querySelectorAll("pre code");
-        codeBlocks.forEach((block) => {
-            hljs.highlightElement(block as HTMLElement);
-        });
-    });
-
     if (!fetchSuccess) {
         return (
             <NotFound/>
@@ -52,7 +43,7 @@ const NoteDisplay = () => {
     }
 
     return (
-        <main className="center" dangerouslySetInnerHTML={{__html: purify.sanitize(content)}}>
+        <main className="center" dangerouslySetInnerHTML={{__html: content}}>
         </main>
     )
 }
