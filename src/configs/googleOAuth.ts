@@ -1,1 +1,0 @@
-export const googleBloggerScope = "https://www.googleapis.com/auth/blogger";

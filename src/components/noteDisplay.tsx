@@ -1,9 +1,9 @@
 import React from "react";
 import {useParams} from "react-router-dom";
 
-import {Note} from "../dto/note";
 import NotFound from "./notFound";
 import {parseMarkdown} from "../managers/markdown";
+import {getNoteById} from "../managers/note";
 
 const NoteDisplay = () => {
     const {noteId} = useParams();
@@ -14,19 +14,16 @@ const NoteDisplay = () => {
 
     React.useEffect(() => {
         async function fetchContent() {
-            try {
-                const response = await fetch(`${process.env.REACT_APP_API}/note/${noteId}`);
-                if (!response.ok) {
-                    console.error("Failed to fetch note content");
-                    setFetchSuccess(false);
-                    return;
-                }
-                const note = await response.json() as Note;
-                setContent(parseMarkdown(note.content));
-            } catch (error) {
-                console.error(error);
+            if (!noteId) {
                 setFetchSuccess(false);
+                return;
             }
+            const note = await getNoteById(parseInt(noteId));
+            if (!note) {
+                setFetchSuccess(false);
+                return;
+            }
+            setContent(parseMarkdown(note.content));
         }
 
         if (!fetchSuccess) {

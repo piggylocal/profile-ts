@@ -1,13 +1,17 @@
 import React from 'react';
 import {Outlet, useLocation} from "react-router-dom";
 import {GoogleOAuthProvider} from '@react-oauth/google';
+import {Backdrop, CircularProgress} from "@mui/material";
 
 import './App.css';
 import Nav from "./components/nav";
 import {getIP} from "./managers/ip";
 import {VisitorLog} from "./dto/user";
+import {LoadingContext} from "./contexts/loadingContext";
 
 function App() {
+    const [loading, setLoading] = React.useState<boolean>(false);
+
     const location = useLocation();
     React.useEffect(() => {
         async function createVisitorLog() {
@@ -40,10 +44,15 @@ function App() {
 
     return (
         <GoogleOAuthProvider clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}>
-            <header>
-                <Nav/>
-            </header>
-            <Outlet/>
+            <LoadingContext.Provider value={{loading, setLoading}}>
+                <header>
+                    <Nav/>
+                </header>
+                <Outlet/>
+            </LoadingContext.Provider>
+            <Backdrop open={loading} sx={{color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1}}>
+                <CircularProgress color="inherit"/>
+            </Backdrop>
         </GoogleOAuthProvider>
     );
 }
