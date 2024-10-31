@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {Editor, rootCtx} from '@milkdown/kit/core';
 import {nord} from '@milkdown/theme-nord';
 import {Milkdown, MilkdownProvider, useEditor, useInstance} from '@milkdown/react';
+import {upload} from '@milkdown/plugin-upload';
 import {commonmark} from '@milkdown/kit/preset/commonmark';
 import {editorViewCtx} from '@milkdown/core';
 import {getMarkdown, replaceAll} from '@milkdown/kit/utils';
@@ -23,7 +24,8 @@ const MilkdownEditor = ({target, setTarget, content, setContent, editorValue, se
             .config((ctx) => {
                 ctx.set(rootCtx, root);
             })
-            .use(commonmark),
+            .use(commonmark)
+            .use(upload),
     );
 
     const [, getInstance] = useInstance();
