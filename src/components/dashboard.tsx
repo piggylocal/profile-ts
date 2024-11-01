@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Stack} from "@mui/material";
+import {Alert, Button, Stack} from "@mui/material";
 import {useLocalStorage} from "@uidotdev/usehooks";
 import {useNavigate} from "react-router-dom";
 import {createTheme, ThemeProvider} from '@mui/material/styles';
@@ -62,6 +62,21 @@ const Dashboard = () => {
         setSnackbarOpen(false);
     }
 
+    async function handleImgurLogin() {
+        let state = "123";
+        try {
+            // const response = await axios.get(`${process.env.REACT_APP_API}/auth/state`);
+            // state = response.data.state;
+        } catch (error) {
+            console.error(error);
+            return;
+        }
+        window.location.assign(`https://api.imgur.com/oauth2/authorize?` +
+            `client_id=387c78518e05c6e&` +
+            `response_type=token&` +
+            `state=${state}`);
+    }
+
     React.useEffect(() => {
         void getPV();
     }, []);
@@ -79,6 +94,25 @@ const Dashboard = () => {
                             alignItems: "center",
                         }}
                     >
+                        <Alert
+                            id="imgur-not-logged-in"
+                            className={""}
+                            severity="error"
+                            style={{width: "100%"}}
+                        >
+                            <span>Not logged in to Imgur. Please login to Imgur to upload images.</span>
+                            <Button style={{
+                                float: "right",
+                                minWidth: 0,
+                                paddingTop: 2,
+                                paddingBottom: 2,
+                                paddingLeft: 8,
+                                paddingRight: 8,
+                                flexShrink: 0,
+                            }} onClick={handleImgurLogin}>
+                                Login
+                            </Button>
+                        </Alert>
                         <DashboardItem>
                             <GoogleOAuthWrapper specifiedScopes={[googleBloggerScope]}>
                                 <NoteManager
