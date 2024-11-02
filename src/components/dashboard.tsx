@@ -6,11 +6,13 @@ import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {blueGrey, grey} from "@mui/material/colors";
 import axios from "axios";
 import Box from "@mui/material/Box";
+import {useLocation} from "react-router-dom";
 
 import NoteManager from "./noteManager";
 import GoogleOAuthWrapper from "./googleOAuthWrapper";
 import {googleBloggerScope} from "../configs/google";
 import Snackbar, {SnackbarCloseReason} from "@mui/material/Snackbar";
+import {removeImgurToken, setImgurToken} from "../managers/imgurOAuth";
 
 const theme = createTheme({
     palette: {
@@ -32,8 +34,12 @@ const Dashboard = () => {
     const [, setToken] = useLocalStorage<string | undefined>("token", undefined);
     const [snackbarOpen, setSnackbarOpen] = React.useState(false);
     const [snackbarMessage, setSnackbarMessage] = React.useState("");
+    // Whether the user is logged in to Imgur. We set default to true to avoid the alert showing up upon loading
+    // the dashboard, when we don't know the login status yet.
+    const [imgurLoggedIn, setImgurLoggedIn] = React.useState(true);
 
     const navigate = useNavigate();
+    const location = useLocation();
 
     function logout() {
         setToken(undefined);
@@ -78,8 +84,22 @@ const Dashboard = () => {
     }
 
     React.useEffect(() => {
+        async function getImgurLoginStatus() {
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_API}/auth/imgur/token`);
+                const token = response.data.token as string;
+                setImgurToken(token);
+            } catch (error) {
+                console.error(error);
+                removeImgurToken();
+                setImgurLoggedIn(false);
+            }
+        }
+
         void getPV();
-    }, []);
+        setImgurLoggedIn(true);
+        void getImgurLoginStatus();
+    }, [location, setImgurLoggedIn]);
 
     return (
         <>
@@ -96,7 +116,7 @@ const Dashboard = () => {
                     >
                         <Alert
                             id="imgur-not-logged-in"
-                            className={""}
+                            className={imgurLoggedIn ? "hidden" : ""}
                             severity="error"
                             style={{width: "100%"}}
                         >
