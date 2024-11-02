@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import jwt from "jsonwebtoken";
+import {jwtDecode} from "jwt-decode";
 import * as t from "io-ts";
 import {isLeft} from "fp-ts/Either";
 
@@ -23,7 +23,7 @@ const ImgurCallback = () => {
         if (!stateParam) {
             return undefined;
         }
-        const stateUnknown = jwt.decode(stateParam);
+        const stateUnknown = jwtDecode(stateParam);
         const decodedState = StateCodec.decode(stateUnknown);
         if (isLeft(decodedState)) {
             console.error("Failed to decode state");
