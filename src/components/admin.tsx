@@ -5,6 +5,7 @@ import Dashboard from "./dashboard";
 import NoteEditor from "./noteEditor";
 import NoteMetaForm from "./noteMetaForm";
 import NotFound from "./notFound";
+import ImgurCallback from "./ImgurCallback";
 
 const Admin = () => {
     const tokenJSON = localStorage.getItem("token");
@@ -27,5 +28,9 @@ export const adminRoutes: RouteObject[] = [
     {
         path: "meta",
         element: <NoteMetaForm/>,
+    },
+    {
+        path: "imgur/callback",
+        element: <ImgurCallback/>,
     }
 ]

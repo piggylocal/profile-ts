@@ -63,18 +63,18 @@ const Dashboard = () => {
     }
 
     async function handleImgurLogin() {
-        let state = "123";
         try {
-            // const response = await axios.get(`${process.env.REACT_APP_API}/auth/state`);
-            // state = response.data.state;
+            const response = await axios.get(
+                `${process.env.REACT_APP_API}/auth/state?origin=${window.location.origin}`
+            );
+            const state = response.data.state;
+            window.location.assign(`https://api.imgur.com/oauth2/authorize?` +
+                `client_id=387c78518e05c6e&` +
+                `response_type=token&` +
+                `state=${state}`);
         } catch (error) {
             console.error(error);
-            return;
         }
-        window.location.assign(`https://api.imgur.com/oauth2/authorize?` +
-            `client_id=387c78518e05c6e&` +
-            `response_type=token&` +
-            `state=${state}`);
     }
 
     React.useEffect(() => {

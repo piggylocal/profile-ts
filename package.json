@@ -26,11 +26,14 @@
     "axios": "^1.7.7",
     "dangerously-set-html-content": "^1.1.0",
     "dompurify": "^3.1.6",
+    "fp-ts": "^2.16.9",
     "google-auth-library": "^9.14.2",
     "highlight.js": "^11.10.0",
     "history": "^5.3.0",
     "hls.js": "^1.5.17-0.canary.10681",
     "http-status-codes": "^2.3.0",
+    "io-ts": "^2.2.21",
+    "jsonwebtoken": "^9.0.2",
     "markdown-it": "^14.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -66,6 +69,7 @@
   },
   "devDependencies": {
     "@types/dompurify": "^3.0.5",
+    "@types/jsonwebtoken": "^9.0.7",
     "@types/markdown-it": "^14.1.2"
   }
 }
