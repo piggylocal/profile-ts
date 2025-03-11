@@ -9,14 +9,13 @@ const Profile = () => {
             <ul className="style-none">
                 <li><b>Name: </b>Zikai Chen (陈 子恺, チェン ズカイ)</li>
                 <li><b>Birthday: </b>Aug 29, 1998</li>
-                <li><b>Email: </b>natnstart@gmail.com</li>
             </ul>
             <h2>Education</h2>
             <ul>
                 <li>
                     Graduate School of Information Science and Technology, The University
                     of Tokyo, Master of Information Science and Technology, Apr 2021 -
-                    Sept 2023 (Expected)
+                    Sept 2023
                 </li>
                 <li>
                     Department of Computer Science and Technology, Tsinghua University,
@@ -29,8 +28,10 @@ const Profile = () => {
             <h2>Skills</h2>
             <ul>
                 <li>
-                    <b>Go: </b>1 year of experience. Mainly used in backend development
-                    and algorithm competitions.
+                    <b>C/C++: </b>3 years of experience. Mainly used in ChromeOS network stack development.
+                </li>
+                <li>
+                    <b>Go: </b>2 years of experience. Mainly used for testing and backend development.
                 </li>
                 <li>
                     <b>Python: </b>6 years of experience. Mainly used for machine learning
@@ -38,28 +39,22 @@ const Profile = () => {
                     competitions, etc.
                 </li>
                 <li>
-                    <b>Java: </b>1 year of experience. Mainly used for Android development
-                    in coursework.
+                    <b>Java/Kotlin/Rust: </b>1 year of experience. Mainly used for Android development.
                 </li>
                 <li>
-                    <b>C/C++: </b>2 years of experience. Mainly used in various coursework
-                    such as GUI development and OS development.
+                    <b>JavaScript/TypeScript: </b>2 years of experience. Used in web development.
                 </li>
                 <li>
-                    <b>JavaScript: </b>1 year of experience. Used in web development.
+                    <b>Linux: </b>Familiar with various shell commands and system calls.
+                </li>
+                <li>
+                    <b>Networking: </b>Experience with ChromeOS and Android network stack development.
                 </li>
                 <li>
                     <b>Database: </b>Experience with MySQL, MongoDB, and Redis in
                     internships.
                 </li>
-                <li>
-                    <b>Linux: </b>Familiar with basic shell commands and Bash scripts.
-                </li>
                 <li><b>Cloud: </b>Experience with AWS and GCP in coursework.</li>
-                <li>
-                    <b>Distributed File System: </b>Having internship experience with
-                    HDFS. Familiar with basic Hadoop shell commands.
-                </li>
                 <li>
                     <b>Machine Learning: </b>Experience with PyTorch, TensorFlow, and
                     Scikit-learn.
@@ -75,8 +70,15 @@ const Profile = () => {
                 <li><b>Japanese: </b>Business level, JLPT N1</li>
                 <li><b>Chinese: </b>Native level</li>
             </ul>
-            <h2>Internship Experiences</h2>
+            <h2>Experiences</h2>
             <ul>
+                <li>
+                    <b>Google - Software Engineer FTE</b><br/>
+                    Oct 2023 - Present<br/>
+                    <IndentedBlock>
+                        I am working in the ChromeOS Networking team.
+                    </IndentedBlock>
+                </li>
                 <li>
                     <b>ByteDance - Backend Engineer Intern</b><br/>
                     Apr 2022 - Sept 2022<br/>
